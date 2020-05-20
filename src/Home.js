@@ -15,7 +15,7 @@ class Home extends React.Component {
     this.setState({isHomeOpen: true, isEditOpen: false});
   }
 
-  showRegisterBox() {
+  showEditBox() {
     this.setState({isEditOpen: true, isHomeOpen: false});
   }
   render() {
@@ -36,7 +36,7 @@ class Home extends React.Component {
           ? "selected-controller"
           : "")}
           onClick={this
-          .showRegisterBox
+          .showEditBox
           .bind(this)}>
           Edit
         </div>
@@ -63,13 +63,22 @@ class HomeBox extends React.Component {
     var username=this.state.username;
 
     return(
+      <div>
+        <div className="header text-white bg-secondary">
+          User Info
+        </div>
           <div class="container">
-          <div>Name: {name}</div>
-          <div>UserName: {username}</div>
-          <div>Number: {number}</div>
-          <div>Email: {email}</div>
-          <div>Password: {password}</div>
-          </div>
+            <div class="table table-striped">
+              <table>
+                <tr> <th>Name </th><td> {name}  </td> </tr>
+                <tr> <th>UserName </th><td> {username}  </td> </tr>
+                <tr> <th>Number </th><td> {number}  </td> </tr>
+                <tr> <th>Email </th><td> {email}  </td> </tr>
+                <tr> <th>Password </th><td> {password}  </td> </tr>
+             </table>
+            </div>
+        </div>
+      </div>
      );
   }
 }
@@ -129,67 +138,69 @@ class EditBox extends React.Component {
   }
   render() {
     return(
-      //Register Box 
+      //Edit Box 
       <div className="inner-container">
-        <div className="header">
+        <div className="header text-white bg-secondary">
           Edit
         </div>
-        <div className="box">
-        <div className="input-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" className="login-input" placeholder="Name"
+        <div class="container">
+          <div className="box">
+          <div className="input-group">
+              <label htmlFor="name">Name</label>
+              <input type="text" name="name" className="login-input" placeholder="Name"
+                  onChange={this
+                  .onNameChange
+                  .bind(this)}/>
+            </div>
+            
+            <div className="input-group">
+              <label htmlFor="number">Number</label>
+              <input type="text" name="number" className="login-input" placeholder="Number"
                 onChange={this
-                .onNameChange
+                .onNumberChange
                 .bind(this)}/>
-          </div>
-          
-          <div className="input-group">
-            <label htmlFor="number">Number</label>
-            <input type="text" name="number" className="login-input" placeholder="Number"
-              onChange={this
-              .onNumberChange
-              .bind(this)}/>
-          </div>
+            </div>
 
-          <div className="input-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              className="login-input"
-              placeholder="Username"
-                onChange={this
-                .onUsernameChange
-                .bind(this)}/>
-          </div>
+            <div className="input-group">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                name="username"
+                className="login-input"
+                placeholder="Username"
+                  onChange={this
+                  .onUsernameChange
+                  .bind(this)}/>
+            </div>
 
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" className="login-input" placeholder="Email"
-              onChange={this
-              .onEmailChange
-              .bind(this)}/>
-          </div>
-
-
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="login-input"
-              placeholder="Password"
+            <div className="input-group">
+              <label htmlFor="email">Email</label>
+              <input type="text" name="email" className="login-input" placeholder="Email"
                 onChange={this
                 .onEmailChange
                 .bind(this)}/>
+            </div>
 
+
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                className="login-input"
+                placeholder="Password"
+                  onChange={this
+                  .onEmailChange
+                  .bind(this)}/>
+
+            </div>
+            <button
+              type="button"
+              className="login-btn"
+              onClick={this
+              .submitEdit
+              .bind(this)}>Edit</button>
           </div>
-          <button
-            type="button"
-            className="login-btn"
-            onClick={this
-            .submitEdit
-            .bind(this)}>Register</button>
         </div>
       </div>
     );

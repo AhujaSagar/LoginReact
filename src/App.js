@@ -142,10 +142,10 @@ class LoginBox extends React.Component {
   
     return (
       <div className="inner-container">
-        <div className="header">
+        <div className="header text-white bg-secondary">
           Login
         </div>
-        <div className="box">
+        <div className="container">
 
           <div className="input-group">
             <label htmlFor="user">Username</label>
@@ -318,10 +318,10 @@ class RegisterBox extends React.Component {
     return (
       
       <div className="inner-container">
-        <div className="header">
+        <div className="header text-white bg-secondary">
           Register
         </div>
-        <div className="box">
+        <div className="container">
         <div className="input-group">
             <label htmlFor="name">Name</label>
             <input

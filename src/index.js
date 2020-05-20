@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Home from './Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 var url=window.location.href;
 if(!url.includes("home")){

@@ -43,7 +43,7 @@ body,
 //Currently Selected Controller
 .selected-controller {
     transition: border 0.5s ease-out;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid #70a1ff;
     text-decoration: underline;
 }
 
@@ -74,7 +74,7 @@ body,
     /* margin-right: 35px; */
     font-family: Ozxgen, sans-serif;
     font-size: 22px;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid #70a1ff;
 }
 
 .box {
@@ -102,7 +102,7 @@ body,
 .login-input {
     height: 2.1em;
     border-radius: 3px;
-    border: 1px solid blue;
+    border: 1px solid #70a1ff;
     transition: border 0.4s ease-out;
     padding: 13px;
     font-family: Oxygen, sans-serif;
@@ -112,7 +112,7 @@ body,
 }
 
 .login-input:hover {
-    border: 2px solid blue;
+    border: 2px solid #70a1ff;
 }
 
 .login-input:focus {
