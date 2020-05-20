@@ -74,7 +74,7 @@ class LoginBox extends React.Component {
       let newArr = [];
       //Add all elements from the prev array to the new one that has a different element
       for (let err of prevState.errorLogin) {
-        if (elm != err.elm) {
+        if (elm !== err.elm) {
           newArr.push(err);
         }
       }
@@ -111,7 +111,7 @@ class LoginBox extends React.Component {
       validatePass=window.sessionStorage.getItem('password');
       if(this.state.user===validateUser){
         if(this.state.pass===validatePass){
-          window.location.href = "/home.html";
+          window.location.href = "/home";
           console.log("Done bro");
         }else{
           this.showValidationErr("pass", "Password Not Matched!");
@@ -125,9 +125,9 @@ class LoginBox extends React.Component {
   
 
   render() {
+    
     let userErr = null,
-    passErr = null,
-    emailErr = null;
+    passErr = null;
   
     //Loop and find which ones has the error
     for (let err of this.state.errorLogin) {
@@ -217,7 +217,7 @@ class RegisterBox extends React.Component {
       let newArr = [];
       //Add all elements from the prev array to the new one that has a different element
       for (let err of prevState.errors) {
-        if (elm != err.elm) {
+        if (elm !== err.elm) {
           newArr.push(err);
         }
       }
@@ -275,7 +275,7 @@ class RegisterBox extends React.Component {
       this.showValidationErr("password", "Password Length Cannot be less than 8!");
       count++;
     }
-    if(count==0){
+    if(count===0){
       window.sessionStorage.setItem("name", this.state.name);
       window.sessionStorage.setItem("number", this.state.number);
       window.sessionStorage.setItem("email", this.state.email);
@@ -411,7 +411,6 @@ class RegisterBox extends React.Component {
 }
 
 reactDOM.render(
-//<div>{this.state.home? <App />: <NotHiring />}</div>  
   <App />, document.getElementById("root"));
 
 export default App;
