@@ -7,14 +7,17 @@ import Home from './Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 var url=window.location.href;
-if(!url.includes("home")){
+var user=window.sessionStorage.getItem("user")
+var pass=window.sessionStorage.getItem("pass")
+var name=window.sessionStorage.getItem("name")
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+if(!url.includes("home")|| (url.includes('home') && user===null && pass===null && name===null)){
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
 }else{
   ReactDOM.render(
     <React.StrictMode>

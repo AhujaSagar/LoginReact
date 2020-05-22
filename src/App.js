@@ -95,29 +95,39 @@ class LoginBox extends React.Component {
   submitLogin(e) {
     var count=0;
     var validateUser,validatePass;
+    var pass=this.state.pass;
     if (this.state.user === "") {
       this.showValidationErr("user", "Username Cannot be empty!");
       count++;
+    }else if(this.state.user.length<3) {
+      this.showValidationErr("user", "Username should be atleast 3 characters long!");
+      count++;
     }
-    if (this.state.pass === "") {
+    if (pass === "") {
       this.showValidationErr("pass", "Password Cannot be empty!");
       count++;
-    }else if(this.state.pass.length < 8) {
-      this.showValidationErr("pass", "Password Length Cannot be less than 8!");
+    }else if(!pass.match(/[a-z]/g) || !pass.match( 
+      /[A-Z]/g) || !pass.match( 
+      /[0-9]/g) || !pass.match( 
+      /[^a-zA-Z\d]/g) || !pass.length >= 8) {
+      this.showValidationErr("pass", "Password Must contain atleast 1 lower case character, 1 upper case character, 1 digit, 1 special character and should be 8 characters long!!");
       count++;
     }
     if(count===0){
       validateUser=window.sessionStorage.getItem('username');
       validatePass=window.sessionStorage.getItem('password');
+
       if(this.state.user===validateUser){
-        if(this.state.pass===validatePass){
+        if(pass===validatePass){
+          window.sessionStorage.setItem("user", this.state.user)
+          window.sessionStorage.setItem("pass", pass)
           window.location.href = "/home";
-          console.log("Done bro");
+
         }else{
           this.showValidationErr("pass", "Password Not Matched!");
         }
       }else{
-        this.showValidationErr("user", "User Doesnt Exist! Please Register First");
+        this.showValidationErr("user", "User Doesnt Exist! Please Register First!");
       }
     }
   }
@@ -252,34 +262,51 @@ class RegisterBox extends React.Component {
   }
   submitRegister(e) {
     var count=0;
+    var password=this.state.password;
     if (this.state.name === "") {
       this.showValidationErr("name", "Name Cannot be empty!");
+      count++;
+    }else if(this.state.name.length<2){
+      this.showValidationErr("name", "Name should be atleast two characters!");
       count++;
     }
     if (this.state.number === "") {
       this.showValidationErr("number", "Number Cannot be empty!");
       count++;
+    }else if((!/^[0]?[789]\d{9}$/.test(this.state.number))){
+      this.showValidationErr("number", "Please enter valid Mobile!");
+      count++;
     }
     if (this.state.username === "") {
       this.showValidationErr("username", "Username Cannot be empty!");
       count++;
+    }else if(this.state.username.length<3) {
+      this.showValidationErr("username", "UserName should be atleast 3 characters long!");
+      count++;
     }
+    
     if (this.state.email === "") {
       this.showValidationErr("email", "Email Cannot be empty!");
       count++;
+    }else if((!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.email))){
+      this.showValidationErr("email", "Please enter valid email id!");
+      count++;
     }
-    if (this.state.password === "") {
+    if (password === "") {
       this.showValidationErr("password", "Password Cannot be empty!");
       count++;
-    }else if(this.state.password.length < 8) {
-      this.showValidationErr("password", "Password Length Cannot be less than 8!");
+    }else if(!password.match(/[a-z]/g) || !password.match( 
+      /[A-Z]/g) || !password.match( 
+      /[0-9]/g) || !password.match( 
+      /[^a-zA-Z\d]/g) || !password.length >= 8) {
+      this.showValidationErr("password", "Password Must contain atleast 1 lower case character, 1 upper case character, 1 digit, 1 special character and should be 8 characters long!");
       count++;
     }
     if(count===0){
       window.sessionStorage.setItem("name", this.state.name);
       window.sessionStorage.setItem("number", this.state.number);
       window.sessionStorage.setItem("email", this.state.email);
-      window.sessionStorage.setItem("password", this.state.password);
+      window.sessionStorage.setItem("password", password);
       window.sessionStorage.setItem("username", this.state.username);
       window.location.reload(false); 
     }
@@ -328,7 +355,7 @@ class RegisterBox extends React.Component {
               type="text"
               name="name"
               className="login-input"
-              placeholder="name"
+              placeholder="Name"
               onChange={this
                 .onNameChange
                 .bind(this)}/>
@@ -338,12 +365,12 @@ class RegisterBox extends React.Component {
             </small>
           </div>
           <div className="input-group">
-            <label htmlFor="number">Number</label>
+            <label htmlFor="number">Mobile</label>
             <input
               type="text"
               name="number"
               className="login-input"
-              placeholder="number"
+              placeholder="Number"
               onChange={this
                 .onNumberChange
                 .bind(this)}/>
