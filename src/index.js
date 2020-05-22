@@ -8,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 var url=window.location.href;
 var user=window.sessionStorage.getItem("user")
-var pass=window.sessionStorage.getItem("pass")
-var name=window.sessionStorage.getItem("name")
 
-if(!url.includes("home")|| (url.includes('home') && user===null && pass===null && name===null)){
+var pass=window.sessionStorage.getItem("pass")
+
+
+if(!url.includes("home")|| (url.includes('home') && user===null && pass===null)){
   ReactDOM.render(
     <React.StrictMode>
       <App />
